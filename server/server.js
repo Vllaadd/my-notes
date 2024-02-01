@@ -25,7 +25,7 @@ app.get('/', async(req, res) => {
     }
 });
 
-app.post('/notes', async(req, res) => {
+app.post('/new', async(req, res) => {
     try{
         const newNote = await Notes.create(req.body);
         res.status(201).json(newNote);

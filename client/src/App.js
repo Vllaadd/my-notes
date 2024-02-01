@@ -13,7 +13,8 @@ const App = () => {
 
   const fetchNotes = async () => {
     try{
-      const response = await axios.get('/');
+      const response = await axios.get('/home');
+      console.log(response.data);
       setNotes(response.data);
     }catch(error){
       console.error('Error fetching notes:', error);
@@ -46,7 +47,7 @@ const App = () => {
     placeholder='Content'
     value={newNote.content}
     onChange={(e) => setNewNote({content: e.target.value})}
-   / >
+   />
 
   <button onClick={createNote}>Create Note</button>
    </div>
