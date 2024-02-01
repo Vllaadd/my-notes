@@ -1,9 +1,10 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState({});
+  const [newNote, setNewNote] = useState({content: ''});
 
   useEffect(() => {
 
@@ -23,7 +24,7 @@ const App = () => {
     try{
       const response = await axios.post('/new', newNote);
       setNotes([...notes, response.data]);
-      setNewNote({});
+      setNewNote({content: ''});
     }catch(error){
       console.error('Error creating note: ', error)
     }
@@ -36,7 +37,7 @@ const App = () => {
    
    <ul>
     {notes.map((note) => (
-      <li key={note._id}>{note.title}</li>
+      <li key={note._id}>{note.body}</li>
     ))}
    </ul>
    <div>
