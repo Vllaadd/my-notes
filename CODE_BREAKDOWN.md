@@ -23,3 +23,33 @@ This breakdown details the technologies employed in each file of the project. Ga
 5. **Error Handling**
     - The Express application is configured to listen on port 3000 using the `app.listen` method 
     - A callback function logs a message when the serve is successfully started 
+
+
+## App.js
+
+1. **useState:**
+   - A React Hook used for adding state to functional components.
+   - Enables the component to maintain and update its state.
+   - The `useState` hook is utilized to manage the state of `notes`, storing the fetched notes.
+   - The `notes` state is updated with the fetched notes using `setNotes`.
+
+2. **useEffect:**
+   - A React Hook used for handling side effects in functional components.
+   - Used to fetch notes when the component mounts (`[]` dependency ensures it runs only once).
+
+3. **Axios:**
+   - A JavaScript library used for making HTTP requests.
+   - Utilized to make a GET request to the root endpoint (`'/'`) of the backend, fetching existing notes.
+
+4. **Rendering Logic:**
+   - The component renders a heading (`<h1>`) with the title "My Notes".
+   - A button is rendered, triggering the `fetchNotes` function when clicked.
+   - A list (`ul`) is used to display the fetched notes using the `map` function.
+
+5. **Event Handling:**
+   - The `onClick` event of the button is set to the `fetchNotes` function.
+
+6. **Error Handling:**
+   - Error handling is implemented in the `catch` block of the `try...catch` statement, logging errors to the console.
+
+

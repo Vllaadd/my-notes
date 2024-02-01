@@ -1,24 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+
+    fetchNotes();
+  }, []);
+
+  const fetchNotes = async () => {
+    try{
+      const response = await axios.get('/');
+      setNotes(response.data);
+    }catch(error){
+      console.error('Error fetching notes:', error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div>
+    <h1>My Notes</h1>
+    <button onClick={fetchNotes}>Fetch Notes</button>
+   
+   <ul>
+    {notes.map((note) => (
+      <li key={note._id}>{note.title}</li>
+    ))}
+   </ul>
+   </div>
   );
 }
 
