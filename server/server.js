@@ -25,5 +25,14 @@ app.get('/', async(req, res) => {
     }
 });
 
+app.post('/notes', async(req, res) => {
+    try{
+        const newNote = await Notes.create(req.body);
+        res.status(201).json(newNote);
+    }catch(error){
+        console.error(error);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+});
 
 app.listen(3000, () => console.log('Server started on port 3000'));
