@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://vladzizic:IWKhFXpvCEkmaAWt@cluster0.7jw4ap3.mong
 .catch(console.error);
 
 // ROUTES
-app.get('/', async(req, res) => {
+app.get('/notes', async(req, res) => {
     try{
         const allNotes = await Notes.find();
         res.status(200).json(allNotes)
@@ -25,7 +25,7 @@ app.get('/', async(req, res) => {
     }
 });
 
-app.post('/new', async(req, res) => {
+app.post('/note', async(req, res) => {
     try{
         const newNote = await Notes.create(req.body);
         res.status(201).json(newNote);

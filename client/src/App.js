@@ -13,8 +13,8 @@ const App = () => {
 
   const fetchNotes = async () => {
     try{
-      const response = await axios.get('/home');
-      console.log(response.data);
+      const response = await axios.get('/notes');
+      console.log('Response:', response);
       setNotes(response.data);
     }catch(error){
       console.error('Error fetching notes:', error);
@@ -23,8 +23,8 @@ const App = () => {
 
   const createNote = async () => {
     try{
-      const response = await axios.post('/new', newNote);
-      setNotes([...notes, response.data]);
+      const response = await axios.post('/note', newNote);
+      setNotes((prevNotes) => [response.data, ...prevNotes]);
       setNewNote({content: ''});
     }catch(error){
       console.error('Error creating note: ', error)
@@ -32,26 +32,25 @@ const App = () => {
   }
 
   return (
-   <div>
-    <h1>My Notes</h1>
-    <button onClick={fetchNotes}>Fetch Notes</button>
-   
-   <ul>
-    {notes.map((note) => (
-      <li key={note._id}>{note.body}</li>
-    ))}
-   </ul>
-   <div>
-    <h2>Create New Note</h2>
-    <textarea
-    placeholder='Content'
-    value={newNote.content}
-    onChange={(e) => setNewNote({content: e.target.value})}
-   />
-
-  <button onClick={createNote}>Create Note</button>
-   </div>
-   </div>
+    <div className="container">
+      <div className="left-panel">
+        <h2>Create New Note</h2>
+        <textarea
+          placeholder='Content'
+          value={newNote.content}
+          onChange={(e) => setNewNote({ content: e.target.value })}
+        />
+        <button onClick={createNote}>Create Note</button>
+      </div>
+      <div className="right-panel">
+        <h1>My Notes</h1>
+        <ul>
+          {notes.map((note) => (
+            <li key={note._id}>{note.body}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
