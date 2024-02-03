@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState({content:'', tag:''});
+  const [newNote, setNewNote] = useState({content:''});
 
   useEffect(() => {
     fetchNotes();
@@ -21,12 +21,9 @@ const App = () => {
 
   const createNote = async () => {
     try{
-      const response = await axios.post('/note', {
-        content: newNote.content,
-        tag: newNote.tag,
-      });
+      const response = await axios.post('/note', {note: newNote.content });
       setNotes((prevNotes) => [response.data, ...prevNotes]);
-      setNewNote({content: '', tag: ''});
+      setNewNote({content: ''});
     }catch(error){
       console.error('Error creating note: ', error)
     }
@@ -36,12 +33,6 @@ const App = () => {
     <div className="container">
       <div className="left-panel">
         <h2>Create New Note</h2>
-        <input
-        type='text'
-        placeholder='Tag'
-        value={newNote.tag}
-        onChange={(e) => setNewNote((prevNote) => ({ ...prevNote, tag: e.target.value }))}
-        />
         <textarea
           placeholder='Content'
           value={newNote.content}
@@ -53,8 +44,7 @@ const App = () => {
         <h1>My Notes</h1>
         <ul>
           {notes.map((note) => (
-            <li key={note._id}>
-            <strong>Tag:</strong> {note.tag}, Content: {note.note}
+            <li key={note._id}>Content: {note.note}
         </li>
           ))}
         </ul>
