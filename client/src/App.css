@@ -1,0 +1,14 @@
+.container{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+.left-panel, 
+.right-panel{
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.right-panel{
+  overflow-y: auto;
+}
