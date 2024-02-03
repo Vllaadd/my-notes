@@ -19,8 +19,11 @@ This breakdown details the technologies employed in each file of the project. Ga
 4. **MongoDB Connection**
     - Connection to the MongoDB database is established using the `mongoose.connect` method 
     - The MongoDB connection string contains authentication credentials and the cluster information 
+   
+5. **Routes**
+   - The two routes serve as the API endpoints for managing notes in the application. The GET route retrieves existing notes, while the POST route adds a ne wnote. The serve responds with appropriate data or error messages based on the success or failure of these operations. 
 
-5. **Error Handling**
+6. **Error Handling**
     - The Express application is configured to listen on port 3000 using the `app.listen` method 
     - A callback function logs a message when the serve is successfully started 
 
