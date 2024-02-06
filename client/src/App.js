@@ -20,18 +20,24 @@ const App = () => {
   };
 
   const parseTagsAndContent = (input) => {
+    if(typeof input !== 'string'){
+      input = '';
+    }
     const tagRegex = /#[^\s#]+/g;
-    const tag = input.match(tagRegex) || [];
+    const tags = input.match(tagRegex) || [];
     const content = input.replace(tagRegex, '').trim();
-    return {tag, content};
+    return {tags, content};
   };
 
   const createNote = async () => {
     try{
-      const {tags, content} = parseTagsAndContent(newNote);
-      const response = await axios.post('/note', {note: content, tags});
-      setNotes((prevNotes) => [response.data, ...prevNotes]);
-      setNewNote({content: ''});
+      const {tags, content} = parseTagsAndContent(newNote.content);
+      console.log('content:', content);
+    console.log('tags:', tags);
+
+      const response = await axios.post('/note', {note: content, tags:[]});
+      setNotes(prevNotes => [response.data, ...prevNotes]);
+      setNewNote({content: '', tags: []});
     }catch(error){
       console.error('Error creating note: ', error)
     }
@@ -43,7 +49,7 @@ const App = () => {
         <h2>Create New Note</h2>
         <textarea
           placeholder='Type Tag and Note'
-          value={newNote}
+          // value={newNote}
           onChange={(e) => setNewNote((prevNote) => ({...prevNote, content: e.target.value}))}
         />
         <button onClick={createNote}>Create Note</button>
@@ -52,7 +58,7 @@ const App = () => {
         <h1>My Notes</h1>
         <ul>
           {notes.map((note) => (
-            <li key={note._id}>Content: {note.note}, Tags: {note.tags.join(', ')}
+            <li key={note._id}>Content: {note.note}, Tags: {note.tags ? note.tags.join(', '): ''}
         </li>
           ))}
         </ul>

@@ -5,6 +5,9 @@ const NotesSchema = new Schema({
     note: {
         type: String,
         required: true
+    },
+    tags: {
+        type: [String]
     }
 });
 
