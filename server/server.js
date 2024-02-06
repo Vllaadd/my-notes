@@ -27,7 +27,8 @@ app.get('/notes', async(req, res) => {
 
 app.post('/note', async(req, res) => {
     try{
-        const newNote = await Notes.create({note: req.body.note});
+        const {note, tag} = req.body;
+        const newNote = await Notes.create({note, tag});
         res.status(201).json(newNote);
     }catch(error){
         console.error(error);

@@ -21,15 +21,15 @@ const App = () => {
 
   const parseTagsAndContent = (input) => {
     const tagRegex = /#[^\s#]+/g;
-    const tags = input.match(tagRegex) || [];
+    const tag = input.match(tagRegex) || [];
     const content = input.replace(tagRegex, '').trim();
-    return {tags, content};
+    return {tag, content};
   };
 
   const createNote = async () => {
     try{
       const {tags, content} = parseTagsAndContent(newNote);
-      const response = await axios,posts('/note', {note: content, tags});
+      const response = await axios.post('/note', {note: content, tags});
       setNotes((prevNotes) => [response.data, ...prevNotes]);
       setNewNote({content: ''});
     }catch(error){
