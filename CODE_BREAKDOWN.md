@@ -34,7 +34,7 @@ This breakdown details the technologies employed in each file of the project. Ga
    - A React Hook used for adding state to functional components.
    - Enables the component to maintain and update its state.
    - The `useState` hook is utilized to manage the state of `notes`, storing the fetched notes.
-   - The `notes` state is updated with the fetched notes using `setNotes`.
+   - The `useState` hook is utilized to manage the state of `notes`, storing the fetched notes, and `newNote`, storing the content of the new note being created.
 
 2. **useEffect:**
    - A React Hook used for handling side effects in functional components.
@@ -45,14 +45,21 @@ This breakdown details the technologies employed in each file of the project. Ga
    - Utilized to make a GET request to the root endpoint (`'/'`) of the backend, fetching existing notes.
 
 4. **Rendering Logic:**
-   - The component renders a heading (`<h1>`) with the title "My Notes".
-   - A button is rendered, triggering the `fetchNotes` function when clicked.
-   - A list (`ul`) is used to display the fetched notes using the `map` function.
+   The component renders a heading (<h1>) with the title "My Notes".
+A left panel contains a heading (<h2>) with the title "Create New Note", a textarea for inputting the content of the new note, and a button to create the note.
+A right panel displays the fetched notes using an unordered list (<ul>) and the map function to iterate over the `notes` array.
+Each note is displayed within a list item (<li>), showing its content and tags if available.
 
 5. **Event Handling:**
-   - The `onClick` event of the button is set to the `fetchNotes` function.
+   -The `onChange` event of the textarea is set to update the content of the newNote state as the user types.
+The `onClick` event of the button to create a new note triggers the createNote function.
 
-6. **Error Handling:**
+6. **Parsing Tags and Content**:
+
+The parseTagsAndContent function extracts tags from the input content using a regular expression and separates them from the content.
+It returns an object containing the extracted tags and the content.
+
+7. **Error Handling:**
    - Error handling is implemented in the `catch` block of the `try...catch` statement, logging errors to the console.
 
 
