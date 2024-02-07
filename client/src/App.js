@@ -19,29 +19,47 @@ const App = () => {
     }
   };
 
-  const parseTagsAndContent = (input) => {
-    if(typeof input !== 'string'){
-      input = '';
+  function extractTags(text) {
+    console.log('Input text:', text);
+    const tagRegex = /#(\w+)/g;
+    const tags = [];
+    const content = text.replace(tagRegex, (_, tag) => {
+      console.log('Extracted tag:', tag);
+      tags.push(tag);
+      return '';
+    }).trim();
+    console.log('Extracted tags:', tags);
+    console.log('Extracted content:', content);
+    return { tags, content };
+  }
+  
+const createNote = async () => {
+  try {
+    console.log('newNote:', newNote); // Check the value of newNote
+    // Check if newNote.content is defined and not empty
+    if (!newNote.content || !newNote.content.trim()) {
+      console.error('Error creating note: Content is empty');
+      return;
     }
-    const tagRegex = /#[^\s#]+/g;
-    const tags = input.match(tagRegex) || [];
-    const content = input.replace(tagRegex, '').trim();
-    return {tags, content};
-  };
 
-  const createNote = async () => {
-    try{
-      const {tags, content} = parseTagsAndContent(newNote.content);
-      console.log('content:', content);
+    const { tags, content } = extractTags(newNote.content);
+    console.log('content:', content);
     console.log('tags:', tags);
 
-      const response = await axios.post('/note', {note: content, tags:[]});
-      setNotes(prevNotes => [response.data, ...prevNotes]);
-      setNewNote({content: '', tags: []});
-    }catch(error){
-      console.error('Error creating note: ', error)
+    // Ensure 'content' is not empty after tag extraction
+    if (!content.trim()) {
+      console.error('Error creating note: Content is empty after tag extraction');
+      return;
     }
-  };
+
+    const response = await axios.post('/note', { note: content, tags });
+    setNotes(prevNotes => [response.data, ...prevNotes]);
+    setNewNote({ content: '', tags: [] });
+  } catch (error) {
+    console.error('Error creating note: ', error);
+  }
+};
+
 
   return (
     <div className="container">
