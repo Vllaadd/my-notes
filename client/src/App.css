@@ -12,3 +12,7 @@
 .right-panel{
   overflow-y: auto;
 }
+
+.hashtag {
+  color: orange; /* Set color to orange */
+}
