@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Card from './components/Card';
 import './App.css';
 
 const App = () => {
@@ -24,12 +25,9 @@ const App = () => {
     const tagRegex = /#(\w+)/g;
     const tags = [];
     const content = text.replace(tagRegex, (_, tag) => {
-      console.log('Extracted tag:', tag);
       tags.push(tag);
-      return '';
+      return  `<span class="hashtag">#${tag}</span>`;;
     }).trim();
-    console.log('Extracted tags:', tags);
-    console.log('Extracted content:', content);
     return { tags, content };
   }
   
@@ -74,12 +72,9 @@ const createNote = async () => {
       </div>
       <div className="right-panel">
         <h1>My Notes</h1>
-        <ul>
-          {notes.map((note) => (
-            <li key={note._id}>Content: {note.note}, Tags: {note.tags ? note.tags.join(', '): ''}
-        </li>
-          ))}
-        </ul>
+        {notes.map((note) => (
+          <Card key={note._id} note={note} />
+        ))}
       </div>
     </div>
   );
