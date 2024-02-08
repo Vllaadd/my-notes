@@ -62,7 +62,8 @@ const App = () => {
     <div className="container">
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-
+      <h3 style={{ color: 'white', marginLeft: '10px' }}>My Notes App</h3>
+        {/* <h3 className='display-6' style={{ color: 'white' }}>My Notes App</h3> */}
       </nav>
 
       {/* Main content */}
@@ -85,9 +86,9 @@ const App = () => {
             <h3>My Notes</h3>
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search by tag" aria-label="Search" value={searchQuery} onChange={handleSearchChange} />
-              <button className="btn btn-light" type="submit">Search</button>
+              <button className="btn" type="submit">Search</button>
             </form>
-
+            <div style={{ borderTop: '1px solid #ccc', margin: '10px 0' }}></div>
             {filteredNotes.map((note) => (
               <Card key={note._id} note={note} />
             ))}

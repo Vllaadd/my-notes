@@ -1,4 +1,13 @@
+body {
+  background-image: url('./assets/my_notes_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
+.display-6{
+  margin-left: 15px;
+}
 
 .hashtag {
   color: orange;
