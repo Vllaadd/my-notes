@@ -60,30 +60,41 @@ const App = () => {
 
   return (
     <div className="container">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by tag..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-      </div>
-      <div className="left-panel">
-        <h2>Create New Note</h2>
-        <textarea
-          placeholder='Type Tag and Note'
-          onChange={(e) => setNewNote((prevNote) => ({ ...prevNote, content: e.target.value }))}
-        />
-        <button onClick={createNote}>Create Note</button>
-      </div>
-      <div className="right-panel">
-        <h1>My Notes</h1>
-        {filteredNotes.map((note) => (
-          <Card key={note._id} note={note} />
-        ))}
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <form className="d-flex">
+          <input className="form-control me-2" type="search" placeholder="Search by tag" aria-label="Search" value={searchQuery} onChange={handleSearchChange} />
+          <button className="btn btn-outline-light" type="submit">Search</button>
+        </form>
+      </nav>
+
+      {/* Main content */}
+      <div className="row" style={{ marginTop: '70px' }}>
+        {/* Left panel for create note form */}
+        <div className="col-lg-3">
+          <div className="left-panel">
+            <h3>Create New Note</h3>
+            <div className="mb-3">
+              <textarea className="form-control" rows={8} placeholder="Type Tag and Note" onChange={(e) => setNewNote((prevNote) => ({ ...prevNote, content: e.target.value }))}></textarea>
+              <button className="btn btn-primary" onClick={createNote}>Create Note</button>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Right panel for existing notes */}
+        <div className="col-lg-9">
+          <div className="right-panel" style={{ maxHeight: 'calc(100vh - 70px)', overflowY: 'auto' }}>
+            <h3>My Notes</h3>
+            {filteredNotes.map((note) => (
+              <Card key={note._id} note={note} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default App;
