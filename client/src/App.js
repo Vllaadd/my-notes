@@ -62,10 +62,7 @@ const App = () => {
     <div className="container">
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <form className="d-flex">
-          <input className="form-control me-2" type="search" placeholder="Search by tag" aria-label="Search" value={searchQuery} onChange={handleSearchChange} />
-          <button className="btn btn-outline-light" type="submit">Search</button>
-        </form>
+
       </nav>
 
       {/* Main content */}
@@ -86,6 +83,11 @@ const App = () => {
         <div className="col-lg-9">
           <div className="right-panel" style={{ maxHeight: 'calc(100vh - 70px)', overflowY: 'auto' }}>
             <h3>My Notes</h3>
+            <form className="d-flex">
+              <input className="form-control me-2" type="search" placeholder="Search by tag" aria-label="Search" value={searchQuery} onChange={handleSearchChange} />
+              <button className="btn btn-light" type="submit">Search</button>
+            </form>
+
             {filteredNotes.map((note) => (
               <Card key={note._id} note={note} />
             ))}
