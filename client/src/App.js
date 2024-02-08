@@ -60,11 +60,10 @@ const App = () => {
 
   return (
     <div className="container">
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-      <h3 style={{ color: 'white', marginLeft: '10px' }}>My Notes App</h3>
-        {/* <h3 className='display-6' style={{ color: 'white' }}>My Notes App</h3> */}
-      </nav>
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ background: 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 100%)' }}>
+  <h3 style={{ color: 'white', marginLeft: '10px' }}>My Notes App</h3>
+</nav>
+
 
       {/* Main content */}
       <div className="row" style={{ marginTop: '70px' }}>
@@ -74,7 +73,7 @@ const App = () => {
             <h3>Create New Note</h3>
             <div className="mb-3">
               <textarea className="form-control" rows={8} placeholder="Type Tag and Note" onChange={(e) => setNewNote((prevNote) => ({ ...prevNote, content: e.target.value }))}></textarea>
-              <button className="btn btn-primary" onClick={createNote}>Create Note</button>
+              <button className="btn" onClick={createNote}>Create Note</button>
             </div>
           </div>
 
