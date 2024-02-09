@@ -46,9 +46,6 @@ This breakdown details the technologies employed in each file of the project. Ga
 
 4. **Rendering Logic:**
    The component renders a heading (<h1>) with the title "My Notes".
-A left panel contains a heading (<h2>) with the title "Create New Note", a textarea for inputting the content of the new note, and a button to create the note.
-A right panel displays the fetched notes using an unordered list (<ul>) and the map function to iterate over the `notes` array.
-Each note is displayed within a list item (<li>), showing its content and tags if available.
 
 5. **Event Handling:**
    -The `onChange` event of the textarea is set to update the content of the newNote state as the user types.
