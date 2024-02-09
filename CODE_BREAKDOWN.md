@@ -44,19 +44,16 @@ This breakdown details the technologies employed in each file of the project. Ga
    - A JavaScript library used for making HTTP requests.
    - Utilized to make a GET request to the root endpoint (`'/'`) of the backend, fetching existing notes.
 
-4. **Rendering Logic:**
-   The component renders a heading (<h1>) with the title "My Notes".
-
-5. **Event Handling:**
+4. **Event Handling:**
    -The `onChange` event of the textarea is set to update the content of the newNote state as the user types.
 The `onClick` event of the button to create a new note triggers the createNote function.
 
-6. **Parsing Tags and Content:**
+5. **Parsing Tags and Content:**
 
 The parseTagsAndContent function extracts tags from the input content using a regular expression and separates them from the content.
 It returns an object containing the extracted tags and the content.
 
-7. **Error Handling:**
+6. **Error Handling:**
    - Error handling is implemented in the `catch` block of the `try...catch` statement, logging errors to the console.
 
 
