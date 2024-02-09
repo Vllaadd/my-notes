@@ -54,12 +54,21 @@ Each note is displayed within a list item (<li>), showing its content and tags i
    -The `onChange` event of the textarea is set to update the content of the newNote state as the user types.
 The `onClick` event of the button to create a new note triggers the createNote function.
 
-6. **Parsing Tags and Content**:
+6. **Parsing Tags and Content:**
 
 The parseTagsAndContent function extracts tags from the input content using a regular expression and separates them from the content.
 It returns an object containing the extracted tags and the content.
 
 7. **Error Handling:**
    - Error handling is implemented in the `catch` block of the `try...catch` statement, logging errors to the console.
+
+
+## Issues I came across 
+1. **Deployment:**
+-  initialization was failing due to the following issue: base directory does not exist /opet/build/repo/build
+- I changed the base directory from `/build` to `/`
+- the initialization was successful, but then the next step - `buildin` failed with the message: `npm ERR! Missing script: "build"`
+- the issue was that the main directory shouldn't be the main folder, which consists of client for front end and server for the backend. Deployment always has focus on frontend only, and that is why once I set the base directory to `/client`, the website was successfuly deployed. 
+
 
 
